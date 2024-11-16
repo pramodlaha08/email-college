@@ -513,6 +513,11 @@ ${authName}
           Copy Email Address
         </button>
       
+        <button onclick="copyToClipboard('${subject || "No Subject"
+        }')">
+          Copy Subject
+        </button>
+      
       `;
 
         recipientsDiv.appendChild(recipientDiv);
