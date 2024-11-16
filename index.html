@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email Generator</title>
+    <style>
+      .recipient {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 10px 0;
+      }
+      button {
+        margin-top: 5px;
+      }
+      pre {
+        white-space: pre-wrap; /* Ensure proper formatting for email message */
+        word-wrap: break-word;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="recipients"></div>
+
+    <script>
+      // Array of recipient details
+      const subject =
+        "Prospective graduate student looking for a research position";
+      const authName = "Kamlesh Kumar Laha";
+      const recipients = [
+        {
+          university: "Illinois State University",
+          name: "Hadi Meidani",
+          email: "meidani@illinois.edu",
+        },
+        {
+          university: "Illinois State University",
+          name: "Jeffery R. Roesler",
+          email: "jroesler@illinois.edu",
+        },
+        {
+          university: "Illinois State University",
+          name: "Erol Tutumluer",
+          email: "tutumlue@illinois.edu",
+        },
+        {
+          university: "Illinois State University",
+          name: "Rahim F Benekohal",
+          email: "rbenekoh@illinois.edu",
+        },
+        {
+          university: "Illinois State University",
+          name: "Ramez M. Hajj",
+          email: "rhajj@illinois.edu",
+        },
+        {
+          university: "Illinois State University",
+          name: "Eleftheria Kontou",
+          email: "kontou@illinois.edu",
+        },
+        {
+          university: "Illinois State University",
+          name: "Lewis J. Lehe",
+          email: "lehe@illinois.edu",
+        },
+        {
+          university: "Illinois State University",
+          name: "Christopher P. L. Barkan",
+          email: "cbarkan@illinois.edu",
+        },
+        {
+          university: "Wayne State University",
+          name: "Mumtaz Usmen",
+          email: "musmen@eng.wayne.edu",
+        },
+        {
+          university: "Wayne State University",
+          name: "Shawn McElmurry",
+          email: "s.mcelmurry@wayne.edu",
+        },
+        {
+          university: "Wayne State University",
+          name: "Fatmir Menkulasi",
+          email: "fatmir.menkulasi@wayne.edu",
+        },
+        {
+          university: "Wayne State University",
+          name: "Carol Miller",
+          email: "ab1421@wayne.edu",
+        },
+        {
+          university: "Wayne State University",
+          name: "Timothy Dittrich",
+          email: "timothy.dittrich@wayne.edu",
+        },
+        {
+          university: "West Virginia University",
+          name: "Ronald Eck",
+          email: "ronald.eck@mail.wvu.edu",
+        },
+        {
+          university: "Virginia Polytechnic Institute and State University",
+          name: "Col. Wakeel I. Idewu",
+          email: "idewuw@vmi.edu",
+        },
+        {
+          university: "Virginia Polytechnic Institute and State University",
+          name: "Aksel Seitllari",
+          email: "seitllariar@vmi.edu",
+        },
+        {
+          university: "University of Southern Mississippi",
+          name: "Dr. Yuanyuan Zhang",
+          email: "Yuanyuan.Zhang@usm.edu",
+        },
+        {
+          university: "University of Virginia",
+          name: "James H. Lambert",
+          email: "lambert@virginia.edu",
+        },
+        {
+          university: "University of Virginia",
+          name: "Osman E. Ozbulut",
+          email: "oeo5c@virginia.edu",
+        },
+        {
+          university: "University of Virginia",
+          name: "James A. Smith",
+          email: "jas9e@virginia.edu",
+        },
+        {
+          university: "University of Virginia",
+          name: "Andr\u00e9s F. Clarens",
+          email: "andres@virginia.edu",
+        },
+        {
+          university: "University of Virginia",
+          name: "Jose Pantaleon Gomez III",
+          email: "jpg4k@virginia.edu",
+        },
+        {
+          university: "University of Virginia",
+          name: "Jonathan L. Goodall",
+          email: "jlg7h@virginia.edu",
+        },
+        {
+          university: "University of Virginia",
+          name: "Devin K. Harris",
+          email: "dkh2a@virginia.edu",
+        },
+        {
+          university: "University of Virginia",
+          name: "Arsalan Heydarian",
+          email: "ah6rx@virginia.edu",
+        },
+        {
+          university: "University of Virginia",
+          name: "Lindsay Ivey-Burden",
+          email: "lindsay.ivey-burden@virginia.edu",
+        },
+        {
+          university: "University of South Florida",
+          name: "Dr. Pei-Sung Lin",
+          email: "lin@cutr.usf.edu",
+        },
+        {
+          university: "University of South Florida",
+          name: "Dr. Fred L. Mannering",
+          email: "flm@usf.edu",
+        },
+        {
+          university: "University of South Florida",
+          name: "Dr. Mahmood Nachabe",
+          email: "nachabe@usf.edu",
+        },
+        {
+          university: "University of South Florida",
+          name: "Dr. Yu Zhang",
+          email: "yuzhang@usf.edu",
+        },
+        {
+          university: "University of South Florida",
+          name: "Dr. Hao Zhou",
+          email: "haozhou1@usf.edu",
+        },
+        {
+          university: "University of Oklahoma",
+          name: "Arif Sadri",
+          email: "sadri@ou.edu",
+        },
+        {
+          university: "University of Oklahoma",
+          name: "Musharraf Zaman",
+          email: "zaman@ou.edu",
+        },
+        {
+          university: "University of Kentucky",
+          name: "Mei Chen",
+          email: "mei.chen@uky.edu",
+        },
+        {
+          university: "University of Kentucky",
+          name: "Eric Green",
+          email: "eric.green@uky.edu",
+        },
+        {
+          university: "University of Kentucky",
+          name: "Adam Kirk",
+          email: "adam.kirk@uky.edu",
+        },
+        {
+          university: "University of Kentucky",
+          name: "Samantha Wright",
+          email: "sam.wright@uky.edu",
+        },
+        {
+          university: "University of Kentucky",
+          name: "Joseph Crabtree",
+          email: "joe.crabtree@uky.edu",
+        },
+        {
+          university: "University of Iowa",
+          name: "Joseph Crabtree",
+          email: "hlee@engineering.uiowa.edu",
+        },
+        {
+          university: "University of Illinois at Chicago",
+          name: "Jane Lin",
+          email: "janelin@uic.edu",
+        },
+        {
+          university: "University of Illinois at Chicago",
+          name: "Abolfazl Mohammadian",
+          email: "kouros@uic.edu",
+        },
+        {
+          university: "University of Illinois at Chicago",
+          name: "Bo Zou",
+          email: "bzou@uic.edu",
+        },
+        {
+          university: "University of Hawaii at Manoa",
+          name: "Guohui Zhang",
+          email: "guohui@hawaii.edu",
+        },
+        {
+          university: "University of Hawaii at Manoa",
+          name: "Oceana Puananilei Francis",
+          email: "oceanaf@hawaii.edu",
+        },
+        {
+          university: "University of Hawaii at Manoa",
+          name: "Phillip S.K. Ooi",
+          email: "ooi@hawaii.edu",
+        },
+        {
+          university: "University of Hawaii at Manoa",
+          name: "Adri\u00e1n Ricardo Archilla",
+          email: "archilla@hawaii.edu",
+        },
+        {
+          university: "University of Hawaii at Manoa",
+          name: "Roger Chen",
+          email: "rbchen@hawaii.edu",
+        },
+        {
+          university: "University of Central Florida",
+          name: "Naveen Eluru",
+          email: "naveen.eluru@ucf.edu",
+        },
+        {
+          university: "University of Central Florida",
+          name: "Mohamed Abdel-Aty",
+          email: "m.aty@ucf.edu",
+        },
+        {
+          university: "University of Central Florida",
+          name: "Haitham Al-Deek",
+          email: "Haitham.Al-Deek@ucf.edu",
+        },
+        {
+          university: "University of Central Florida",
+          name: "Natalia Barbour",
+          email: "natalia.barbour@ucf.edu",
+        },
+        {
+          university: "University of Delaware",
+          name: "Shangjia Dong",
+          email: "sjdong@udel.edu",
+        },
+        {
+          university: "University of Delaware",
+          name: "Ardeshir Faghri",
+          email: "faghri@udel.edu",
+        },
+        {
+          university: "University of Delaware",
+          name: "Earl \u201cRusty\u201d Lee",
+          email: "elee@udel.edu",
+        },
+        {
+          university: "University of Delaware",
+          name: "Haritha Malladi",
+          email: "malladi@udel.edu",
+        },
+        {
+          university: "University of Delaware",
+          name: "Mark Nejad",
+          email: "nejad@udel.edu",
+        },
+        {
+          university: "University of Delaware",
+          name: "Jennie Saxe",
+          email: "jpsaxe@udel.edu",
+        },
+        {
+          university: "University of Delaware",
+          name: "Allan Zarembski",
+          email: "dramz@udel.edu",
+        },
+        {
+          university: "University of Connecticut",
+          name: "Anshu Bamney",
+          email: "anshu.bamney@uconn.edu",
+        },
+        {
+          university: "University of Connecticut",
+          name: "Davis Chacon-Hurtado",
+          email: "davis.chacon-hurtado@uconn.edu",
+        },
+        {
+          university: "University of Connecticut",
+          name: "Fatemeh Fakhrmoosavi",
+          email: "moosavi@uconn.edu",
+        },
+        {
+          university: "University of Connecticut",
+          name: "Monika Filipovska",
+          email: "monika.filipovska@uconn.edu",
+        },
+        {
+          university: "University of Connecticut",
+          name: "Norman W. Garrick",
+          email: "norman.garrick@uconn.edu",
+        },
+        {
+          university: "University of Connecticut",
+          name: "John N. Ivan",
+          email: "john.ivan@uconn.edu",
+        },
+        {
+          university: "University of Connecticut",
+          name: "Eric Jackson",
+          email: "jeongho.kim@uconn.edu",
+        },
+        {
+          university: "University of Cincinnati",
+          name: "Heng Wei",
+          email: "weihg@ucmail.uc.edu",
+        },
+        {
+          university: "University of Cincinnati",
+          name: "Lei Wang",
+          email: "wang4li@ucmail.uc.edu",
+        },
+        {
+          university: "University of California, San Diego",
+          name: "Pui-Shum Shing",
+          email: "pshing@ucsd.edu",
+        },
+        {
+          university: "University of California, San Diego",
+          name: "Francesco Lanza Di Scalea",
+          email: "flanzadiscalea@ucsd.edu",
+        },
+        {
+          university: "University of California, Riverside",
+          name: "Matthew J Barth",
+          email: "matthew.barth@ucr.edu",
+        },
+        {
+          university: "University of California, Riverside",
+          name: "Kanok Boriboonsomsin",
+          email: "kanok.boriboonsomsin@ucr.edu",
+        },
+        {
+          university: "University of California, Riverside",
+          name: "Peng Hao",
+          email: "peng.hao@ucr.edu",
+        },
+        {
+          university: "University of California, Riverside",
+          name: "Heejung Jung",
+          email: "heejung.jung@ucr.edu",
+        },
+        {
+          university: "University of California, Riverside",
+          name: "Georgios Karavalakis",
+          email: "georgios.karavalakis@ucr.edu",
+        },
+        {
+          university: "University of Alabama at Birmingham",
+          name: "Avinash Unnikrishnan",
+          email: "aunnikri@uab.edu",
+        },
+        {
+          university: "University of Alabama at Birmingham",
+          name: "Hooman Ghasemi",
+          email: "ghasemis@uab.edu",
+        },
+        {
+          university: "The University of Texas at El Paso",
+          name: "Vivek Tandon",
+          email: "vivek@utep.edu",
+        },
+        {
+          university: "The University of Texas at El Paso",
+          name: "Soheil Nazarian",
+          email: "nazarian@utep.edu",
+        },
+        {
+          university: "The University of Texas at El Paso",
+          name: "Roberto A Osegueda",
+          email: "osegueda@utep.edu",
+        },
+        {
+          university: "Texas A&M University",
+          name: "Itza Mendoza-Sanchez",
+          email: "itzamendoza@tamu.edu",
+        },
+        {
+          university: "Texas A&M University",
+          name: "Dominique Lord",
+          email: "d-lord@tamu.edu",
+        },
+        {
+          university: "Rice University",
+          name: "Daniel Cohan",
+          email: "cohan@rice.edu",
+        },
+        {
+          university: "Colorado State University",
+          name: "David McLean",
+          email: "david.mclean@colostate.edu",
+        },
+        {
+          university: "Colorado State University",
+          name: "Mitchell Olson",
+          email: "mitchell.olson@colostate.edu",
+        },
+        {
+          university: "Colorado State University",
+          name: "Yanlin Guo",
+          email: "yanlin.guo@colostate.edu",
+        },
+        {
+          university: "Colorado State University",
+          name: "Rebecca Atadero",
+          email: "rebecca.atadero@colostate.edu",
+        },
+        {
+          university: "Colorado State University",
+          name: "Ellison Milne Carter",
+          email: "emcarter@colostate.edu",
+        },
+      ];
+
+      // Email template generator
+      function generateEmail({ university, name }) {
+        return `Dear Professor ${name},
+
+I hope you are doing well!
+
+I am Kamlesh Kumar Laha, and I have recently graduated with a Bachelor's degree in Civil Engineering from Pulchowk Campus, Tribhuvan University, Nepal. I am interested in pursuing an MS in Civil Engineering with a specialization in Transportation Engineering, along with research opportunities under your supervision at ${university}.
+
+Throughout my studies, I developed a growing interest in transportation systems. I gained research experience through my final year project on "𝗣𝗮𝘃𝗲𝗺𝗲𝗻𝘁 𝗥𝗲𝘀𝗽𝗼𝗻𝘀𝗲 𝘁𝗼 𝗩𝗲𝗵𝗶𝗰𝘂𝗹𝗮𝗿 𝗟𝗼𝗮𝗱𝗶𝗻𝗴 𝘂𝘀𝗶𝗻𝗴 𝗔𝗯𝗮𝗾𝘂𝘀, 𝗙𝗶𝗻𝗶𝘁𝗲 𝗘𝗹𝗲𝗺𝗲𝗻𝘁 𝗔𝗻𝗮𝗹𝘆𝘀𝗶𝘀" Currently, I am working as an intern at the <strong>Nepal Centre for Engineering and Research</strong>, where I am gaining hands-on experience in <strong>Traffic Simulation</strong>. This experience has further fueled my passion for the field, and I believe I have the necessary background in this subject matter and dive deeper into the field under your guidance.  
+
+I came across some of your research projects and realized that your expertise resonates with my research interests.  I am particularly interested in conducting research on transportation policies, the impact of autonomous and mixed traffic systems in highway environments, intelligent transportation system, Numerical Analysis on the response of pavement parameter and similar others on transportation engineering.
+
+I believe this research holds great potential for addressing real-world transportation challenges and contributing to the advancement of sustainable transportation solutions.
+
+I have attached my CV and transcript with this email. If there is any additional information that you would like, I would be happy to provide it to you. I eagerly await your response.
+
+Sincerely,
+${authName}
+
+      `;
+      }
+
+      // Populate recipients and generate emails
+      const recipientsDiv = document.getElementById("recipients");
+      recipients.forEach((recipient, index) => {
+        const emailContent = generateEmail(recipient);
+
+        // Create a recipient container
+        const recipientDiv = document.createElement("div");
+        recipientDiv.classList.add("recipient");
+
+        // Add recipient details
+        recipientDiv.innerHTML = `
+        <h3>Recipient ${index + 1}</h3>
+        <p><strong>Subject:</strong> ${subject}</p>
+        <p><strong>Name:</strong> ${recipient.name}</p>
+        <p><strong>University:</strong> ${recipient.university}</p>
+        <p><strong>Email:</strong> ${recipient.email || "No Email Provided"}</p>
+        
+        <div class="output"><pre>${emailContent}</pre></div>
+
+        <!-- Copy Email Address Button -->
+        <button onclick="copyToClipboard('${
+          recipient.email || "No Email Provided"
+        }')">
+          Copy Email Address
+        </button>
+      
+      `;
+
+        recipientsDiv.appendChild(recipientDiv);
+      });
+
+      // Function to sanitize text for safe copying
+      function sanitize(text) {
+        return text.replace(/[`$\\]/g, "\\$&"); // Escape backticks, dollar signs, and backslashes
+      }
+
+      // Function to copy text to clipboard
+      function copyToClipboard(text) {
+        // Decode HTML entities to plain text
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = text;
+        const plainText = tempDiv.innerText || tempDiv.textContent;
+
+        // Attempt to use modern Clipboard API
+        navigator.clipboard
+          .writeText(plainText)
+          .then(() => {})
+          .catch((err) => {
+            // Fallback to older method
+            const textarea = document.createElement("textarea");
+            textarea.value = plainText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+          });
+      }
+    </script>
+  </body>
+</html>
